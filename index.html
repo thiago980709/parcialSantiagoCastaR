@@ -14,7 +14,7 @@ function cualImagen( fila, col ){
 		"9.png",
 		"10.png"
 	];
-	var pos = fila * col;
+	var pos = (fila+1)*5 + col;
 	return "img/" + imagenes[ pos % 10 ];
 }
 
