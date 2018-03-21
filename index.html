@@ -1,6 +1,9 @@
 <html>
 	<head>
 	<script>
+/**
+Esta funcion es la que guarda las imagenes y nos retorna la imagen
+**/
 function cualImagen( fila, col ){
 	var imagenes = [ 
 		"1.png",
@@ -18,28 +21,43 @@ function cualImagen( fila, col ){
 	return "img/" + imagenes[ pos % 10 ];
 }
 
+/**
+Esta funcion es la que cargas las imagenes en los div
+**/
 function htmlCarta( fila, col ){
 	return '<div><img src="' + cualImagen(fila,col) + '" /></div>';
 }
-
+/**
+Esta funcion es la que se encarga de repartir las cartas invocando la funcion htmlCarta
+**/
 function repartir(){
 	var cartas="";
 	for( var fila = 0; fila <= 4; fila++){
-		for( col = 0; col <= 5; col++){
+		for( var col = 0; col <= 5; col++){
 			cartas += htmlCarta( fila, col );
 		}
 	}
 	
 	tab = document.getElementById("tablero");
 	tab.innerHTML = cartas;
+}
+
+function voltearCarta(){
+	if (document.getElementsByTagName('img').style.visibility="visible") { 
+	document.getElementsByTagName('img').style.visibility="hidden"; 
+
+	if (document.getElementsByTagName('img').style.visibility="hidden") 
+	document.getElementsByTagName('img').style.visibility="visible"; 
+	} 
 }	
-	
 	</script>
 	<style>
 #tablero img
 {
-	visibility: hidden;
-}	
+	visibility: visible;
+}
+
+
 
 #tablero div
 {
@@ -47,12 +65,20 @@ function repartir(){
 	padding: 4px;
 	border-width: 5px;
 	margin: 8px;
+	width: 10%
 }
+.fila{
+	width: 50%
+}
+
 	</style>
 	</head>
 	<body>
 	<button onclick="repartir()">Repartir</button>
-	<div id="tablero"></div>
+	
+	<div id="tablero" onclick="voltearCarta()"></div>
+	
+	
 	<div id="puntaje"></div>
 	</body>
 </html>
